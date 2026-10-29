@@ -357,6 +357,8 @@ startBtn.addEventListener('click', () => {
         slideTimerInput.value = presetMinutes;
     }
 
+    resetSlideTimer();
+    toggleSlideTimer();
     showPresentationOverlay();
     loadCurrentFile();
 });
@@ -583,8 +585,6 @@ function hidePresentationOverlay() {
 function loadCurrentFile() {
     const file = pdfFiles[currentFileIndex];
     if (!file) return;
-
-    resetSlideTimer();
 
     const fileURL = URL.createObjectURL(file);
 
