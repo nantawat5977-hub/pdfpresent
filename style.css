@@ -1,0 +1,280 @@
+/* PDF Presenter - Custom Supplementary Styles & Polish */
+
+/* General utility */
+.hidden {
+    display: none !important;
+}
+
+.hidden-input {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    padding: 0;
+    border: none;
+    position: absolute;
+    pointer-events: none;
+}
+
+/* Custom Scrollbars */
+#fileList::-webkit-scrollbar {
+    width: 6px;
+}
+
+#fileList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#fileList::-webkit-scrollbar-thumb {
+    background: rgba(148, 163, 184, 0.35);
+    border-radius: 9999px;
+}
+
+#fileList::-webkit-scrollbar-thumb:hover {
+    background: rgba(148, 163, 184, 0.6);
+}
+
+/* Draggable List Items */
+#fileList li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.875rem 1.125rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(226, 232, 240, 0.9);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03);
+    cursor: grab;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    user-select: none;
+}
+
+.dark #fileList li {
+    background: rgba(15, 23, 42, 0.7);
+    border-color: rgba(51, 65, 85, 0.8);
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+#fileList li:hover {
+    transform: translateY(-1px) scale(1.005);
+    border-color: #818cf8;
+    box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.15);
+}
+
+.dark #fileList li:hover {
+    border-color: #6366f1;
+    box-shadow: 0 4px 12px -2px rgba(99, 102, 241, 0.25);
+}
+
+#fileList li.dragging {
+    opacity: 0.45;
+    background: #e0e7ff;
+    border-color: #6366f1;
+    transform: scale(0.99);
+    cursor: grabbing;
+}
+
+.dark #fileList li.dragging {
+    background: #312e81;
+    border-color: #818cf8;
+}
+
+/* File list item inner elements */
+.file-item-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.file-drag-handle {
+    color: #94a3b8;
+    cursor: grab;
+    font-size: 1.125rem;
+    display: flex;
+    align-items: center;
+    transition: color 0.15s;
+}
+
+#fileList li:hover .file-drag-handle {
+    color: #6366f1;
+}
+
+.file-badge-index {
+    font-size: 0.75rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 0.15rem 0.45rem;
+    border-radius: 0.5rem;
+    background: #f1f5f9;
+    color: #64748b;
+    flex-shrink: 0;
+}
+
+.dark .file-badge-index {
+    background: #1e293b;
+    color: #94a3b8;
+}
+
+.file-type-icon {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 0.625rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.file-type-icon.pdf {
+    background: #ffe4e6;
+    color: #e11d48;
+}
+
+.dark .file-type-icon.pdf {
+    background: rgba(225, 29, 72, 0.2);
+    color: #fb7185;
+}
+
+.file-type-icon.image {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.dark .file-type-icon.image {
+    background: rgba(2, 132, 199, 0.2);
+    color: #38bdf8;
+}
+
+.file-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-name-text {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dark .file-name-text {
+    color: #f1f5f9;
+}
+
+.file-meta-sub {
+    font-size: 0.75rem;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dark .file-meta-sub {
+    color: #94a3b8;
+}
+
+.file-item-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+    margin-left: 0.75rem;
+}
+
+.file-delete-btn {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.file-delete-btn:hover {
+    color: #ef4444;
+    background: #fee2e2;
+}
+
+.dark .file-delete-btn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #fca5a5;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-scaleIn {
+    animation: scaleIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bounceSubtle {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, 6px);
+    }
+}
+
+.animate-bounce-subtle {
+    animation: bounceSubtle 2.5s ease-in-out infinite;
+}
+
+/* Timer Warning and Danger Glows */
+.timer-warning {
+    border-color: rgba(245, 158, 11, 0.6) !important;
+    box-shadow: 0 0 20px -3px rgba(245, 158, 11, 0.4) !important;
+}
+
+.timer-danger {
+    border-color: rgba(239, 68, 68, 0.8) !important;
+    box-shadow: 0 0 25px -2px rgba(239, 68, 68, 0.6) !important;
+    animation: timerPulse 1s ease-in-out infinite;
+}
+
+@keyframes timerPulse {
+    0%, 100% {
+        transform: scale(1);
+        border-color: rgba(239, 68, 68, 0.9);
+    }
+    50% {
+        transform: scale(1.03);
+        border-color: rgba(248, 113, 113, 1);
+        box-shadow: 0 0 30px 2px rgba(239, 68, 68, 0.8);
+    }
+}
